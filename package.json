@@ -1,0 +1,15 @@
+{
+  "name": "dcmr",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "BSD",
+  "description": "ERROR: No README.md file found!",
+  "dependencies": {
+    "cheerio": "~0.10.1",
+    "underscore": "~1.4.1",
+    "request": "~2.11.4"
+  }
+}
