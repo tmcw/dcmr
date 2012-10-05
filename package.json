@@ -10,6 +10,7 @@
   "dependencies": {
     "cheerio": "~0.10.1",
     "underscore": "~1.4.1",
-    "request": "~2.11.4"
+    "request": "~2.11.4",
+    "underscore.string": "~2.3.0"
   }
 }

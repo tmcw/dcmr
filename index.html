@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DC Municipal Regulations</title>
+        <style>
+            body {
+                font:normal 15px/20px 'Helvetica';
+            }
+            input {
+                font-size:50px;
+            }
+            #output {
+                width:100%;
+                height:400px;
+            }
+            #output a {
+                display:block;
+            }
+        </style>
+    </head>
+    <body>
+        <form action='POST'>
+            <input type='text' id='search' />
+        </form>
+        <pre id='output'></pre>
+        <script src='jquery.js'></script>
+        <script>
+            var indexes = {}, titles;
+            $.getJSON('titles.json', function(o) {
+                titles = o;
+            });
+            var $output = $('#output');
+            $('#search').keyup(function() {
+                var v = this.value;
+                var norm = v.replace(/[^A-Za-z]/g, '').toLowerCase();
+                if (norm.length > 2) {
+                    var a = norm[0];
+                    if (!indexes[a]) {
+                        indexes[a] = {};
+                        $('#output').text('');
+                        $.getJSON('indexes/' + a + '.json', function(o) {
+                            indexes[a] = o;
+                        });
+                    } else {
+                        $output.empty();
+                        (indexes[a][norm] || []).map(function(i) {
+                            var link = document.createElement('a');
+                            link.href = 'text/' + i + '.txt';
+                            link.innerHTML = titles[i];
+                            $output.append(link);
+                        });
+                    }
+                } else {
+                    $output.text('');
+                }
+            });
+        </script>
+    </body>
+</html>
