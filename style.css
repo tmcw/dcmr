@@ -1,0 +1,40 @@
+body {
+    font:normal 15px/20px 'Helvetica';
+}
+a {
+    text-decoration:none;
+    color:#26B;
+}
+input#search {
+    font-size:20px;
+    padding:5px;
+    line-height:30px;
+    width:300px;
+}
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+h1 {
+    font:normal 20px/30px 'Helvetica';
+}
+.header {
+    width:280px;
+    padding:10px;
+}
+.left {
+    width:300px;
+    padding:10px;
+    float:left;
+}
+.right {
+    margin-left:320px;
+    padding:10px;
+}
+div.result {
+
+}
+h3 {
+    font:normal 20px/35px 'Helvetica';
+}

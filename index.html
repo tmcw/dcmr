@@ -2,27 +2,23 @@
 <html>
     <head>
         <title>DC Municipal Regulations</title>
-        <style>
-            body {
-                font:normal 15px/20px 'Helvetica';
-            }
-            input {
-                font-size:50px;
-            }
-            #output {
-                width:100%;
-                height:400px;
-            }
-            #output a {
-                display:block;
-            }
-        </style>
+        <link href='reset.css' type='text/css' rel='stylesheet' />
+        <link href='style.css' type='text/css' rel='stylesheet' />
     </head>
     <body>
+        <div class='left'>
+        <div class='header'>
+            <h1>DC Municipal Regulations</h1>
+            <p>This is an <em>unofficial</em> of the Washington, DC
+            municipal regulations.</p>
+        </div>
         <form action='POST'>
-            <input type='text' id='search' />
+            <input type='text' id='search' placeholder='search' />
         </form>
-        <pre id='output'></pre>
+        </div>
+        <div class='right'>
+            <div id='output'></div>
+        </div>
         <script src='jquery.js'></script>
         <script>
             var indexes = {}, titles;
@@ -44,10 +40,15 @@
                     } else {
                         $output.empty();
                         (indexes[a][norm] || []).map(function(i) {
+                            var d = document.createElement('div');
+                            d.className = 'result';
                             var link = document.createElement('a');
                             link.href = 'text/' + i + '.txt';
-                            link.innerHTML = titles[i];
-                            $output.append(link);
+                            var h3 = document.createElement('h3');
+                            h3.innerHTML = titles[i];
+                            link.appendChild(h3);
+                            d.appendChild(link);
+                            $output.append(d);
                         });
                     }
                 } else {
