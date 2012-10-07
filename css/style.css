@@ -1,15 +1,29 @@
 body {
     font:normal 15px/20px 'Helvetica';
+    color:#444;
 }
 a {
     text-decoration:none;
     color:#26B;
 }
 input#search {
-    font-size:20px;
-    padding:5px;
+    font-size:16px;
     line-height:30px;
     width:300px;
+    background: white;
+    border: 1px solid #CCC;
+    border-color: #CCC #DDD #DDD;
+    padding: 0px 2px;
+    box-shadow: inset #DDD 0px 1px 3px;
+    outline:none;
+}
+input#search:focus {
+    border-color:#000;
+}
+.autocomplete-option {
+    float:left;
+    font:normal 12px/15px 'Helvetica';
+    padding:2px 5px;
 }
 * {
     -moz-box-sizing: border-box;
@@ -36,5 +50,5 @@ div.result {
 
 }
 h3 {
-    font:normal 20px/35px 'Helvetica';
+    font:normal 15px/20px 'Helvetica';
 }

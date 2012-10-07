@@ -2,58 +2,66 @@
 <html>
     <head>
         <title>DC Municipal Regulations</title>
-        <link href='reset.css' type='text/css' rel='stylesheet' />
-        <link href='style.css' type='text/css' rel='stylesheet' />
+        <link href='css/reset.css' type='text/css' rel='stylesheet' />
+        <link href='css/style.css' type='text/css' rel='stylesheet' />
     </head>
     <body>
         <div class='left'>
         <div class='header'>
             <h1>DC Municipal Regulations</h1>
-            <p>This is an <em>unofficial</em> of the Washington, DC
+            <p>This is an <em>unofficial</em> version of the Washington, DC
             municipal regulations.</p>
         </div>
         <form action='POST'>
-            <input type='text' id='search' placeholder='search' />
+            <input type='text' id='search' placeholder='search' autofocus />
         </form>
+        <div id='autocomplete'>
+        </div>
         </div>
         <div class='right'>
             <div id='output'></div>
         </div>
-        <script src='jquery.js'></script>
+        <script src='js/jquery.js'></script>
+        <script src='js/search.js'></script>
         <script>
             var indexes = {}, titles;
             $.getJSON('titles.json', function(o) {
                 titles = o;
             });
             var $output = $('#output');
-            $('#search').keyup(function() {
-                var v = this.value;
-                var norm = v.replace(/[^A-Za-z]/g, '').toLowerCase();
-                if (norm.length > 2) {
-                    var a = norm[0];
-                    if (!indexes[a]) {
-                        indexes[a] = {};
-                        $('#output').text('');
-                        $.getJSON('indexes/' + a + '.json', function(o) {
-                            indexes[a] = o;
-                        });
-                    } else {
-                        $output.empty();
-                        (indexes[a][norm] || []).map(function(i) {
-                            var d = document.createElement('div');
-                            d.className = 'result';
-                            var link = document.createElement('a');
-                            link.href = 'text/' + i + '.txt';
-                            var h3 = document.createElement('h3');
-                            h3.innerHTML = titles[i];
-                            link.appendChild(h3);
-                            d.appendChild(link);
-                            $output.append(d);
-                        });
+            var $autocomplete = $('#autocomplete');
+            var s = search();
+            $('#search').keyup(function(e) {
+                $autocomplete.empty();
+                s.autocomplete(this.value, function(results) {
+                    $autocomplete.empty();
+                    for (var i = 0; i < results.length; i++) {
+                        var a = document.createElement('a');
+                        a.innerHTML = results[i];
+                        a.className = 'autocomplete-option';
+                        a.onclick = function() {
+                            var s = $('#search').val();
+                            var terms = s.split(/\s+/);
+                            if (!terms) return;
+                            terms[terms.length - 1] = this.innerHTML;
+                            $('#search').val(terms.join(' ')).keyup().focus();
+                        }
+                        $autocomplete[0].appendChild(a);
                     }
-                } else {
-                    $output.text('');
-                }
+                });
+            });
+            $('#search').keyup(function(e) {
+                s.query(this.value, function(results) {
+                    $output.empty();
+                    for (var i = 0; i < results.length; i++) {
+                        var h3 = document.createElement('h3');
+                        var a = document.createElement('a');
+                        a.href = 'text/' + results[i].id + '.txt'
+                        a.innerHTML = results[i].title;
+                        h3.appendChild(a);
+                        $output[0].appendChild(h3);
+                    }
+                });
             });
         </script>
     </body>
