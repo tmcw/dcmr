@@ -1,7 +1,8 @@
 # The DC Municipal Regulations
 
 The [DC Municipal Regulations](http://www.dcregs.dc.gov/).
-This is also an experiment in open data design.
+This is also an experiment in open data design. See relevant post on
+[Indexing and Searching Big Static Data](http://macwright.org/2012/11/14/indexing-searching-big-static-data.html)
 
 Most open data sites run as traditional websites; they have a content
 management function (a UI for editing content), a 'search engine',
