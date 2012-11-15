@@ -1,10 +1,6 @@
 # The DC Municipal Regulations
 
 The [DC Municipal Regulations](http://www.dcregs.dc.gov/).
-
-* `scrape.js`: scraping. requires request, get, cheerio
-* `textify.py`: requires sh, catdoc
-
 This is also an experiment in open data design.
 
 Most open data sites run as traditional websites; they have a content
@@ -31,3 +27,31 @@ could then pre-pay for years of service.
 
 This should also permit incredibly easy clonability; federating the data
 store will be as simple as downloading a copy.
+
+
+## Installation
+
+    mkdir docs text indexes
+
+Install node.js module dependencies:
+
+    npm install
+
+Scrape the datasource
+
+    node/scrape/scrape.js
+
+Generate a json document from the titles generated in the docs directory
+
+    node titles.json
+
+Convert the documents into plain text
+Requires python plugins `catdoc` and `sh` installed which you can install via pip
+
+    python textify.py
+
+Lastly, generate an index by running
+
+    cd generate_index
+    node invert.js
+    node trie.js
