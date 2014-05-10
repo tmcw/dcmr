@@ -12,6 +12,7 @@
     "get": "~1.2.1",
     "underscore": "~1.4.1",
     "request": "~2.11.4",
+    "url":"*",
     "underscore.string": "~2.3.0"
   }
 }
