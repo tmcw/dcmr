@@ -8,10 +8,10 @@
   "license": "BSD",
   "description": "ERROR: No README.md file found!",
   "dependencies": {
-    "cheerio": "~0.10.1",
-    "get": "~1.2.1",
-    "underscore": "~1.4.1",
-    "request": "~2.11.4",
-    "underscore.string": "~2.3.0"
+    "cheerio": "~0.22.0",
+    "get": "~1.4.0",
+    "underscore": "~1.8.3",
+    "request": "~2.81.0",
+    "underscore.string": "~3.3.4"
   }
 }
