@@ -1,5 +1,7 @@
 # The DC Municipal Regulations
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tmcw/dcmr.svg)](https://greenkeeper.io/)
+
 The [DC Municipal Regulations](http://www.dcregs.dc.gov/).
 This is also an experiment in open data design. See relevant post on
 [Indexing and Searching Big Static Data](http://macwright.org/2012/11/14/indexing-searching-big-static-data.html)
